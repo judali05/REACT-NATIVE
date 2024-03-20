@@ -1,69 +1,33 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
+import { StyleSheet, Text, View, Button } from 'react-native';
 
 export default function App() {
-  const [num1, setNum1] = React.useState('');
-  const [num2, setNum2] = React.useState('');
-  const [resultado, setResultado] = React.useState(null);
+  const [resultado, setResultado] = React.useState(0);
 
-  const sumar = () => {
-    if (num1 && num2) {
-      setResultado(parseFloat(num1) + parseFloat(num2));
-    } else {
-      setResultado(null);
+  const incrementar = () => {
+    setResultado(resultado + 1);
+  };
+
+  const decrementar = () => {
+    if(resultado>0){
+      setResultado(resultado - 1);
+    }else{
+      alert("El numero no se puede decrementar más :V ")
     }
   };
 
-  const restar = () => {
-    if (num1 && num2) {
-      setResultado(parseFloat(num1) - parseFloat(num2));
-    } else {
-      setResultado(null);
-    }
-  };
 
-  const multiplicar = () => {
-    if (num1 && num2) {
-      setResultado(parseFloat(num1) * parseFloat(num2));
-    } else {
-      setResultado(null);
-    }
-  };
-
-  const dividir = () => {
-    if (num1 && num2 && num2 !== 0) {
-      setResultado(parseFloat(num1) / parseFloat(num2));
-    } else {
-      setResultado(null);
-    }
-  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.texto}>calculadora</Text>
       <View style={styles.cont}>
-        <TextInput
-          style={styles.input}
-          keyboardType="numeric"
-          onChangeText={text => setNum1(text)}
-          value={num1}
-          placeholder="Número 1"
-        />
-        <TextInput
-          style={styles.input}
-          keyboardType="numeric"
-          onChangeText={text => setNum2(text)}
-          value={num2}
-          placeholder="Número 2"
-        />
+      <Text style={styles.texto}>{resultado}</Text>
         <View style={styles.buttonContainer}>
-          <Button title="Sumar" onPress={sumar} />
-          <Button title="Restar" onPress={restar} />
-          <Button title="Multiplicar" onPress={multiplicar} />
-          <Button title="Dividir" onPress={dividir} />
+          <Button title="incrementar" onPress={incrementar} />
+          <Button title="decrementa" onPress={decrementar} />
+
         </View>
-        {resultado !== null && <Text>Resultado: {resultado}</Text>}
         <StatusBar style="auto" />
       </View>
     </View>
@@ -77,7 +41,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cont: {
-    flex: 0.3,
+    flex: 0.4,
     margin: 5,
     justifyContent: 'center',
     alignItems: 'center',
@@ -88,14 +52,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 35,
     marginBottom: 5,
-  },
-  input: {
-    marginBottom: 10,
-    padding: 10,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 5,
-    backgroundColor: '#fff'
   },
   buttonContainer: {
     padding: 15,
