@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   cont: {
-    flex: 0.4,
+    flex: 0.3,
     margin: 5,
     justifyContent: 'center',
     alignItems: 'center',
@@ -102,6 +102,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-around',
     width: '90%',
-    marginBottom: 10,
   },
 });
