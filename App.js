@@ -1,45 +1,48 @@
+import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button } from 'react-native';
 
 export default function App() {
-    const [num1, setNum1] = useState('');
-    const [num2, setNum2] = useState('');
-    const [resultado, setResultado] = useState(null);
-  
-    const sumar = () => {
-      if (!isNaN(num1) && !isNaN(num2)) {
-        setResultado(parseFloat(num1) + parseFloat(num2));
-      } else {
-        setResultado(null);
-      }
-    };
-  
-    const restar = () => {
-      if (!isNaN(num1) && !isNaN(num2)) {
-        setResultado(parseFloat(num1) - parseFloat(num2));
-      } else {
-        setResultado(null);
-      }
-    };
-  
-    const multiplicar = () => {
-      if (!isNaN(num1) && !isNaN(num2)) {
-        setResultado(parseFloat(num1) * parseFloat(num2));
-      } else {
-        setResultado(null);
-      }
-    };
-  
-    const dividir = () => {
-      if (!isNaN(num1) && !isNaN(num2) && parseFloat(num2) !== 0) {
-        setResultado(parseFloat(num1) / parseFloat(num2));
-      } else {
-        setResultado(null);
-      }
-    };
-  
-    return (
-      <View style={styles.container}>
+  const [num1, setNum1] = React.useState('');
+  const [num2, setNum2] = React.useState('');
+  const [resultado, setResultado] = React.useState(null);
+
+  const sumar = () => {
+    if (num1 && num2) {
+      setResultado(parseFloat(num1) + parseFloat(num2));
+    } else {
+      setResultado(null);
+    }
+  };
+
+  const restar = () => {
+    if (num1 && num2) {
+      setResultado(parseFloat(num1) - parseFloat(num2));
+    } else {
+      setResultado(null);
+    }
+  };
+
+  const multiplicar = () => {
+    if (num1 && num2) {
+      setResultado(parseFloat(num1) * parseFloat(num2));
+    } else {
+      setResultado(null);
+    }
+  };
+
+  const dividir = () => {
+    if (num1 && num2 && num2 !== 0) {
+      setResultado(parseFloat(num1) / parseFloat(num2));
+    } else {
+      setResultado(null);
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <Text style={styles.texto}>calculadora</Text>
+      <View style={styles.cont}>
         <TextInput
           style={styles.input}
           keyboardType="numeric"
@@ -63,8 +66,8 @@ export default function App() {
         {resultado !== null && <Text>Resultado: {resultado}</Text>}
         <StatusBar style="auto" />
       </View>
-      
-    );
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -73,18 +76,32 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  cont: {
+    flex: 0.4,
+    margin: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#ccc',
+    borderRadius: 5,
+  },
+  texto: {
+    textAlign: 'center',
+    fontSize: 35,
+    marginBottom: 5,
+  },
   input: {
-    width: '80%',
     marginBottom: 10,
     padding: 10,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 5,
+    backgroundColor: '#fff'
   },
   buttonContainer: {
+    padding: 15,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    width: '80%',
+    width: '90%',
     marginBottom: 10,
   },
 });
